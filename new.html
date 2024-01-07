@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サークル名 - サークル紹介</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #F5F5F5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        p {
+            color: #ff0000;
+            cursor: pointer;
+            transition: color 0.3s;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        p.checked {
+            color: #28A745;
+        }
+        p:hover {
+            color: #007BFF; /* ホバーエフェクトで文字色を変更 */
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        #specialAnimation {
+            display: none;
+            font-size: 24px;
+            color: #D9534F;
+        }
+        #selectedImages {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        #selectedImages img {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 8px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>【トークショーまでの軌跡】</h1>
+        <h2>東洋大学アニメサークル「Project.T」の活動で一番大きなプロジェクト</h2>
+        <h2>【学園祭で声優さんを招きトークショー開催】</h2>
+        <h2>成功させるためのロードマップをたどろう！！</h2>
+        <p id="openModal1" onclick="toggleCheck('openModal1')">①企画書の作成</p>
+        <p id="openModal2" onclick="toggleCheck('openModal2')">②事務所とのやり取り</p>
+        <p id="openModal3" onclick="toggleCheck('openModal3')">③広報活動</p>
+        <p id="openModal4" onclick="toggleCheck('openModal4')">④学園祭本番</p>
+        <div id="specialAnimation">
+            学園祭が無事成功しました！！
+            最後に記念撮影！！
+            <br></br>
+            <img alt="click ---→ はいチーズ ←--- click" onclick="showSpecialImage()">
+        </div>
+
+        <h2>過去の実績</h2>
+        <h3>2023年度</h3>
+        <p id="openModal5">【麻倉もも東洋でとーくしょー】</p>
+        <p id="openModal6">【ちばしょー とーよー とーくしょー】</p>
+        <h3>2022年度</h3>
+        <p id="openModal7">【わんちゃん達大集合!MEATing in TOYO】</p>
+        <p id="openModal8">【東洋-DE-声優ステージ】</p>
+    </div>
+    <div class="modal" id="imageModal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="Modal Image" onclick="addSelectedImage()">
+    </div>
+    <script>
+        function toggleCheck(id) {
+            const element = document.getElementById(id);
+            // 要素がすでにチェック済みの場合は何もしない
+            if (!element.classList.contains('checked')) {
+                // チェックされていない場合、'checked' クラスを追加
+                element.classList.add('checked');
+            }
+            // チェックされた要素の数を取得
+            const checkedElements = document.querySelectorAll('.container p.checked');
+            // 全ての要素がチェックされたら特別なアニメーションを表示
+            if (checkedElements.length === 4) {
+                document.getElementById('specialAnimation').style.display = 'block';
+                // ここに特別なアニメーションの処理を追加
+            } else {
+                document.getElementById('specialAnimation').style.display = 'none';
+            }
+        }
+        // タグ1をクリックで画像1を表示
+        document.getElementById('openModal1').addEventListener('click', function() {
+            document.getElementById('modalImage').src = 'a.jpg'; // 画像のパスを設定
+            document.querySelector('.modal').style.display = 'flex';
+        });
+        // タグ2をクリックで画像2を表示
+        document.getElementById('openModal2').addEventListener('click', function() {
+            document.getElementById('modalImage').src = 'b.jpg'; // 画像のパスを設定
+            document.querySelector('.modal').style.display = 'flex';
+        });
+        // タグ3をクリックで画像3を表示
+        document.getElementById('openModal3').addEventListener('click', function() {
+            document.getElementById('modalImage').src = 'c.jpg'; // 画像のパスを設定
+            document.querySelector('.modal').style.display = 'flex';
+        });
+        // タグ4をクリックで画像4を表示
+        document.getElementById('openModal4').addEventListener('click', function() {
+            document.getElementById('modalImage').src = 'd.jpg'; // 画像のパスを設定
+            document.querySelector('.modal').style.display = 'flex';
+        });
+        // タグ5をクリックで画像5を表示
+        document.getElementById('openModal5').addEventListener('click', function() {
+            document.getElementById('modalImage').src = '2023 1.jpg'; // 画像のパスを設定
+            document.querySelector('.modal').style.display = 'flex';
+        });
+
+        // タグ6をクリックで画像6を表示
+        document.getElementById('openModal6').addEventListener('click', function() {
+            document.getElementById('modalImage').src = '2023 2.jpg'; // 画像のパスを設定
+            document.querySelector('.modal').style.display = 'flex';
+        });
+
+        // タグ7をクリックで画像7を表示
+        document.getElementById('openModal7').addEventListener('click', function() {
+            document.getElementById('modalImage').src = '2022 2.jpg'; // 画像のパスを設定
+            document.querySelector('.modal').style.display = 'flex';
+        });
+
+        // タグ8をクリックで画像8を表示
+        document.getElementById('openModal8').addEventListener('click', function() {
+            document.getElementById('modalImage').src = '2022 1.jpg'; // 画像のパスを設定
+            document.querySelector('.modal').style.display = 'flex';
+        });
+
+        function showSpecialImage() {
+            const specialAnimationImage = document.querySelector('#specialAnimation img');
+            specialAnimationImage.src = 'e.jpg'; // 画像のパスを設定
+            specialAnimationImage.style.maxWidth = '100%'; // 画像をページに合わせる
+            specialAnimationImage.style.maxHeight = '100%';
+        }
+
+        // モーダルを閉じる
+        function closeModal() {
+            document.querySelector('.modal').style.display = 'none';
+        }
+
+    </script>
+</body>
+</html>     
